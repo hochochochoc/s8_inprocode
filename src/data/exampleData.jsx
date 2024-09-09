@@ -27,4 +27,32 @@ export const exampleData = [
     expense: 340,
     date: "2024-09-02",
   },
+  {
+    expense: 40,
+    date: "2024-09-01",
+  },
+  {
+    expense: 420,
+    date: "2024-08-31",
+  },
+  {
+    expense: 140,
+    date: "2024-08-30",
+  },
+  {
+    expense: 610,
+    date: "2024-08-29",
+  },
+  {
+    expense: 420,
+    date: "2024-08-28",
+  },
+  {
+    expense: 340,
+    date: "2024-08-27",
+  },
+  {
+    expense: 340,
+    date: "2024-08-26",
+  },
 ];

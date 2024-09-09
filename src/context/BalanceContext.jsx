@@ -7,6 +7,7 @@ const BalanceProvider = ({ children }) => {
   const [weeklyBalance, setWeeklyBalance] = useState(0);
   const [expensesToday, setExpensesToday] = useState(0);
   const [percentualChange, setPercentualChange] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     const balance = [...exampleData]
@@ -46,6 +47,8 @@ const BalanceProvider = ({ children }) => {
         weeklyBalance,
         expensesToday,
         percentualChange,
+        currentPage,
+        setCurrentPage,
       }}
     >
       {children}

@@ -1,19 +1,28 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import * as d3 from "d3";
 import { exampleData } from "../../../data/exampleData";
 import { useTranslation } from "react-i18next";
+import { BalanceContext } from "../../../context/BalanceContext";
 
 export default function Graphic() {
   const svgRef = useRef(null);
   const { t } = useTranslation();
+  const { currentPage } = useContext(BalanceContext);
+  const entriesPerPage = 7;
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
-    const width = 470;
+    const width = 430;
     const height = 250;
     const margin = { top: 20, right: 20, bottom: 30, left: 40 };
 
+    svg.selectAll("*").remove();
     svg.attr("width", width).attr("height", height);
+
+    const paginatedData = exampleData.slice(
+      currentPage * entriesPerPage,
+      (currentPage + 1) * entriesPerPage,
+    );
 
     const dayNames = ["dl", "dt", "dc", "dj", "dv", "ds", "dg"];
 
@@ -23,13 +32,13 @@ export default function Graphic() {
 
     const x = d3
       .scaleBand()
-      .domain(exampleData.map((d) => d.date).reverse())
+      .domain(paginatedData.map((d) => d.date).reverse())
       .range([margin.left, width - margin.right])
       .padding(0.1);
 
     const y = d3
       .scaleLinear()
-      .domain([0, d3.max(exampleData, (d) => d.expense) + 200])
+      .domain([0, d3.max(paginatedData, (d) => d.expense) + 200])
       .nice()
       .range([height - margin.bottom, margin.top]);
 
@@ -68,7 +77,7 @@ export default function Graphic() {
     const barsGroup = svg.append("g");
     barsGroup
       .selectAll("rect")
-      .data(exampleData)
+      .data(paginatedData)
       .enter()
       .append("rect")
       .attr("x", (d) => x(d.date))
@@ -98,7 +107,7 @@ export default function Graphic() {
       .selectAll("text")
       .style("fill", "#d4d4d4")
       .style("font-size", "14px");
-  }, []);
+  }, [currentPage]);
 
   return (
     <div className="flex flex-col items-center">

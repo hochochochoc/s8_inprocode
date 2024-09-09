@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { ArrowLeft } from "lucide-react";
+import { BalanceContext } from "../../../context/BalanceContext";
+import { exampleData } from "../../../data/exampleData";
 
 export default function LeftButton() {
   const [isAnimating, setIsAnimating] = useState(false);
 
+  const { currentPage, setCurrentPage } = useContext(BalanceContext);
+
   const handleClick = () => {
-    setIsAnimating(true);
-    setTimeout(() => setIsAnimating(false), 2000);
+    if (currentPage < Math.floor(exampleData.length / 7) - 1) {
+      setIsAnimating(true);
+
+      setCurrentPage(currentPage + 1);
+      setTimeout(() => setIsAnimating(false), 2000);
+    }
   };
 
   return (

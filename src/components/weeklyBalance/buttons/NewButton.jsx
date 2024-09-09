@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { ArrowRight } from "lucide-react";
+import { BalanceContext } from "../../../context/BalanceContext";
 
 export default function CoolButton() {
   const [isAnimating, setIsAnimating] = useState(false);
 
+  const { currentPage, setCurrentPage } = useContext(BalanceContext);
+
   const handleClick = () => {
-    setIsAnimating(true);
-    setTimeout(() => setIsAnimating(false), 2000);
+    if (currentPage > 0) {
+      setIsAnimating(true);
+
+      setCurrentPage(currentPage - 1);
+      setTimeout(() => setIsAnimating(false), 2000);
+    }
   };
 
   return (
