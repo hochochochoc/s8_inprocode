@@ -2,11 +2,13 @@ import "./index.css";
 import WeeklyBalance from "./components/weeklyBalance/WeeklyBalance";
 import DetailsWeek from "./components/detailsWeek/detailsWeek";
 import { BalanceProvider } from "./context/BalanceContext";
+import LanguageButtons from "./components/language/LanguageButtons";
 
 function App() {
   return (
     <div className="min-h-screen overflow-hidden bg-orange-100">
       <BalanceProvider>
+        <LanguageButtons />
         <WeeklyBalance />
         <DetailsWeek />
       </BalanceProvider>

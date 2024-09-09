@@ -1,9 +1,11 @@
 import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
 import { exampleData } from "../../../data/exampleData";
+import { useTranslation } from "react-i18next";
 
 export default function Graphic() {
   const svgRef = useRef(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
@@ -101,9 +103,7 @@ export default function Graphic() {
   return (
     <div className="flex flex-col items-center">
       <div className="flex justify-center">
-        <p className="mt-4 text-2xl font-extrabold">
-          Despeses - Última setmana
-        </p>
+        <p className="mt-4 text-2xl font-extrabold">{t("graph_headline")}</p>
       </div>
       <svg ref={svgRef}></svg>
     </div>
