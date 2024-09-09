@@ -1,6 +1,7 @@
 import "./index.css";
 import WeeklyBalance from "./components/weeklyBalance/WeeklyBalance";
-import DetailsWeek from "./components/detailsWeek/DsetailsWeek";
+
+import DetailsWeek from "./components/detailsWeek/DetailsWeek";
 import { BalanceProvider } from "./context/BalanceContext";
 import LanguageButtons from "./components/language/LanguageButtons";
 
