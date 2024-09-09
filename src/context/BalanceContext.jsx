@@ -10,9 +10,10 @@ const BalanceProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
-    const balance = [...exampleData]
-      .slice(0, 7)
-      .reduce((sum, entry) => sum + entry.expense, 0);
+    const balance = [...exampleData].reduce(
+      (sum, entry) => sum + entry.expense,
+      0,
+    );
 
     setWeeklyBalance(balance);
   }, []);
