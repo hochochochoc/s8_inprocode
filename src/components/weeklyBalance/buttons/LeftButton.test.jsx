@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import React from "react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { BalanceContext } from "../../../context/BalanceContext";
 import LeftButton from "./LeftButton";
 import { describe, it, expect, vi } from "vitest";
@@ -35,7 +36,7 @@ describe("LeftButton component", () => {
     expect(button).toBeDisabled();
   });
 
-  it("re-enables the button after animation", () => {
+  it("re-enables the button after animation", async () => {
     const mockSetCurrentPage = vi.fn();
 
     render(
@@ -49,9 +50,11 @@ describe("LeftButton component", () => {
     const button = screen.getByRole("button", { name: /arrow button/i });
     fireEvent.click(button);
 
-    // Wait for the animation timeout
-    setTimeout(() => {
-      expect(button).not.toBeDisabled();
-    }, 2000);
+    await waitFor(
+      () => {
+        expect(button).not.toBeDisabled();
+      },
+      { timeout: 2000 },
+    );
   });
 });

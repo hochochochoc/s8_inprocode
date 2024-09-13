@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { BalanceContext, BalanceProvider } from "./BalanceContext"; // Adjust the path as needed
-import { describe, it, expect } from "vitest";
+import { describe, it } from "vitest";
 import { exampleData } from "../data/exampleData";
 
 // Mock exampleData if needed
