@@ -38,6 +38,6 @@ jobs:
             -Dsonar.projectKey=jannik_jannik
             -Dsonar.organization=jannik
             -Dsonar.exclusions=**/*.spec.js,**/*.test.js
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov-report/index.html
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov-report/index.info
         env:
           SONAR_TOKEN: ${{ secrets.stupid_token }}
