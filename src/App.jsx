@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./index.css";
+
 import WeeklyBalance from "./components/weeklyBalance/WeeklyBalance";
 
 import DetailsWeek from "./components/detailsWeek/DetailsWeek";
