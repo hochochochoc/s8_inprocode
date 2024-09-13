@@ -20,10 +20,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "20" # Updated Node.js version
 
       - name: Install dependencies
-        run: npm inssonar.exclusions=**/*.spec.js,**/*.test.jstall
+        run: npm install # Fixed typo
 
       - name: Build
         run: npm run build
