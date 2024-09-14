@@ -22,7 +22,7 @@ export default function LeftButton() {
     <button
       onClick={handleClick}
       className={`relative h-12 w-10 rounded-lg transition-all duration-300 ease-in-out hover:bg-red-300 hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 ${isAnimating ? "" : ""}`}
-      aria-label="Arrow button"
+      aria-label="Left arrow button"
       disabled={isAnimating}
     >
       <ArrowLeft

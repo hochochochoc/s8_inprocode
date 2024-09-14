@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { ArrowRight } from "lucide-react";
 import { BalanceContext } from "../../../context/BalanceContext";
 

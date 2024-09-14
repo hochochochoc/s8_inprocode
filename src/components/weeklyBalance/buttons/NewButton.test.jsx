@@ -1,21 +1,20 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { BalanceContext } from "../../../context/BalanceContext";
-import LeftButton from "./LeftButton";
+import CoolButton from "./NewButton";
 import { describe, it, expect, vi } from "vitest";
-import { exampleData } from "../../../data/exampleData";
 
-describe("LeftButton component", () => {
+describe("CoolButton component", () => {
   it("renders and is initially enabled", () => {
     render(
       <BalanceContext.Provider
-        value={{ currentPage: 0, setCurrentPage: vi.fn() }}
+        value={{ currentPage: 1, setCurrentPage: vi.fn() }}
       >
-        <LeftButton />
+        <CoolButton />
       </BalanceContext.Provider>,
     );
 
-    const button = screen.getByRole("button", { name: /arrow button/i });
+    const button = screen.getByRole("button", { name: /flying arrow button/i });
     expect(button).toBeInTheDocument();
     expect(button).not.toBeDisabled();
   });
@@ -25,13 +24,13 @@ describe("LeftButton component", () => {
 
     render(
       <BalanceContext.Provider
-        value={{ currentPage: 0, setCurrentPage: mockSetCurrentPage }}
+        value={{ currentPage: 1, setCurrentPage: mockSetCurrentPage }}
       >
-        <LeftButton />
+        <CoolButton />
       </BalanceContext.Provider>,
     );
 
-    const button = screen.getByRole("button", { name: /arrow button/i });
+    const button = screen.getByRole("button", { name: /flying arrow button/i });
     fireEvent.click(button);
 
     expect(button).toBeDisabled();
@@ -42,36 +41,36 @@ describe("LeftButton component", () => {
 
     render(
       <BalanceContext.Provider
-        value={{ currentPage: 0, setCurrentPage: mockSetCurrentPage }}
+        value={{ currentPage: 1, setCurrentPage: mockSetCurrentPage }} // Ensure currentPage is > 0
       >
-        <LeftButton />
+        <CoolButton />
       </BalanceContext.Provider>,
     );
 
-    const button = screen.getByRole("button", { name: /arrow button/i });
+    const button = screen.getByRole("button", { name: /flying arrow button/i });
     fireEvent.click(button);
 
     await waitFor(
       () => {
         expect(button).not.toBeDisabled();
       },
-      { timeout: 2000 },
+      { timeout: 2500 },
     );
   });
 
-  it("does not change page or animate if currentPage is at maximum", () => {
+  it("does not change page or animate if currentPage is at minimum", () => {
     const mockSetCurrentPage = vi.fn();
-    const maxPage = Math.floor(exampleData.length / 7) - 1;
+    const minPage = 0;
 
     render(
       <BalanceContext.Provider
-        value={{ currentPage: maxPage, setCurrentPage: mockSetCurrentPage }}
+        value={{ currentPage: minPage, setCurrentPage: mockSetCurrentPage }}
       >
-        <LeftButton />
+        <CoolButton />
       </BalanceContext.Provider>,
     );
 
-    const button = screen.getByRole("button", { name: /arrow button/i });
+    const button = screen.getByRole("button", { name: /flying arrow button/i });
     fireEvent.click(button);
 
     expect(mockSetCurrentPage).not.toHaveBeenCalled();

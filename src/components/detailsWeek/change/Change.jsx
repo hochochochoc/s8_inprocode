@@ -9,9 +9,11 @@ export default function Change() {
   return (
     <div className="m-6 mt-10">
       <p className="text-end font-extrabold">
-        {percentualChange >= 0
+        {percentualChange > 0
           ? `+${percentualChange}%`
-          : `${percentualChange}%`}
+          : percentualChange < 0
+            ? `${percentualChange}%`
+            : `${percentualChange}%`}
       </p>
       <p className="text-end text-sm">{t("comparison")}</p>
     </div>

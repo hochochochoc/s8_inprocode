@@ -20,10 +20,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20" # Updated Node.js version
+          node-version: "20"
 
       - name: Install dependencies
-        run: npm install # Fixed typo
+        run: npm install
 
       - name: Build
         run: npm run build
@@ -37,7 +37,7 @@ jobs:
           args: >
             -Dsonar.projectKey=jannik_jannik
             -Dsonar.organization=jannik
-            -Dsonar.exclusions=**/*.spec.js,**/*.test.js
+            -Dsonar.exclusions=**/*.spec.js,**/*.test.js,coverage/**
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov-report/index.info
         env:
           SONAR_TOKEN: ${{ secrets.stupid_token }}
