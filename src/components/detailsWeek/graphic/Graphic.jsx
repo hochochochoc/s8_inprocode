@@ -75,6 +75,8 @@ export default function Graphic() {
       .style("font-size", "14px");
 
     const barsGroup = svg.append("g");
+    const mostRecentDate = d3.max(exampleData, (d) => d.date);
+
     barsGroup
       .selectAll("rect")
       .data(paginatedData)
@@ -85,7 +87,7 @@ export default function Graphic() {
       .attr("width", x.bandwidth())
       .attr("height", (d) => height - margin.bottom - y(d.expense))
       .attr("fill", (d, i, nodes) =>
-        i === nodes.length - 7 ? "skyblue" : "salmon",
+        d.date === mostRecentDate ? "skyblue" : "salmon",
       )
       .attr("rx", 5)
       .attr("ry", 5);
